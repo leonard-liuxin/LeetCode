@@ -57,8 +57,24 @@ public class Solution {
     
     // 5. Longest Palindromic Substring
     public String longestPalindrome(String s) {
-        return null;
+    	String result = "";
+    	for (int i = 0; i < s.length(); i++) {
+    		String s_1 = expandAroundCenter(s, i, i);
+    		String s_2 = expandAroundCenter(s, i, i + 1);
+    		result = s_1.length() > result.length() ? s_1 : result;
+    		result = s_2.length() > result.length() ? s_2 : result;
+    	}
+        return result;
     }
+    private String expandAroundCenter(String s, int l, int r) {
+		while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) {
+			l--;r++;
+		}
+		return s.substring(l+1,r);
+	}
+    
+    // 6. ZigZag Conversion
+    
     
 	// main
 	public static void main(String[] args) {
