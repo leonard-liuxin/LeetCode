@@ -80,6 +80,18 @@ public class Solution {
 		return null;
 	}
 	
+	// 7. Reverse Integer
+	public int reverse(int x) {
+		int r = 0;
+		int max = Integer.MAX_VALUE / 10;
+		while(x != 0) {
+			if(Math.abs(r) > max) return 0;
+			r = r * 10 + x % 10;
+			x /= 10;
+		}
+		return r;
+	}
+	
 	// 8. String to Integer (atoi)
 	public int myAtoi(String str) {
 		int result = 0, sign = 1;
@@ -99,11 +111,29 @@ public class Solution {
 		result = result * sign;
 		return result;
 	}
+	
+	// 9. Palindrome Number
+	public boolean isPalindrome(int x) {
+		if (x < 0) return false;
+		int div = 1;
+		while(x / div >= 10) {
+			div *= 10;
+		}
+		while(x != 0) {
+			if(x / div == x % 10) {
+				x = x % div / 10;
+				div /= 100;
+			} else {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	// main
 	public static void main(String[] args) {
 		Solution s = new Solution();
-		System.out.println(s.lengthOfLongestSubstring("abcabcdeb"));
+		System.out.println(s.isPalindrome(1000021));
 	}
 
 }
